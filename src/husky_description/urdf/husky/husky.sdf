@@ -1,0 +1,345 @@
+<sdf version='1.7'>
+  <model name='husky'>
+    <link name='base_link'>
+      <inertial>
+        <pose>-0.000649 -0.084998 0.561999 0 -0 0</pose>
+        <mass>46.035</mass>
+        <inertia>
+          <ixx>0.602311</ixx>
+          <ixy>-0.0236441</ixy>
+          <ixz>-0.119697</ixz>
+          <iyy>1.73871</iyy>
+          <iyz>-0.00153873</iyz>
+          <izz>2.02971</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0.561875 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.9874 0.5709 0.12375</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_collision_1'>
+        <pose>0 0 0.675625 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.78992 0.5709 0.10375</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='base_link_fixed_joint_lump__camera_link_collision_2'>
+        <pose>0.047 0 0.5 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.0001 0.0001 0.0001</scale>
+            <uri>meshes/camera.stl</uri>
+          </mesh>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>-0.15 0.11 0.7 1.7 -0 1.57079</pose>
+        <geometry>
+          <mesh>
+            <scale>0.002 0.002 0.002</scale>
+            <uri>meshes/kae.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.2 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+      <visual name='base_link_fixed_joint_lump__camera_link_visual_1'>
+        <pose>0.397 0 0.7 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.0001 0.0001 0.0001</scale>
+            <uri>meshes/camera.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0.8 0 0.2 1</ambient>
+          <diffuse>0.8 0.0 0.0 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+        
+      </visual>
+      <sensor name="camera" type="camera">
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>true</visualize>
+          <topic>camera</topic>
+        </sensor>
+    </link>
+    <joint name='front_left_wheel' type='revolute'>
+      <pose relative_to='base_link'>0.3 0.325 0.53282 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>front_left_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='front_left_wheel_link'>
+      <pose relative_to='front_left_wheel'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2.637</mass>
+        <inertia>
+          <ixx>0.02467</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04411</iyy>
+          <iyz>0</iyz>
+          <izz>0.02467</izz>
+        </inertia>
+      </inertial>
+      <collision name='front_left_wheel_link_collision'>
+        <pose>0 0 0 1.57079 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.1143</length>
+            <radius>0.1651</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='front_left_wheel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.8 0.8 0.8</scale>
+            <uri>meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0 0 0.5 1</ambient>
+          <diffuse>0 0 0.1 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    <joint name='front_right_wheel' type='revolute'>
+      <pose relative_to='base_link'>0.3 -0.325 0.53282 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>front_right_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='front_right_wheel_link'>
+      <pose relative_to='front_right_wheel'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2.637</mass>
+        <inertia>
+          <ixx>0.02467</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04411</iyy>
+          <iyz>0</iyz>
+          <izz>0.02467</izz>
+        </inertia>
+      </inertial>
+      <collision name='front_right_wheel_link_collision'>
+        <pose>0 0 0 1.57079 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.1143</length>
+            <radius>0.1651</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='front_right_wheel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.8 0.8 0.8</scale>
+            <uri>meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0 0 0.5 1</ambient>
+          <diffuse>0 0 0.1 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    <joint name='rear_left_wheel' type='revolute'>
+      <pose relative_to='base_link'>-0.3 0.325 0.53282 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>rear_left_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rear_left_wheel_link'>
+      <pose relative_to='rear_left_wheel'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2.637</mass>
+        <inertia>
+          <ixx>0.02467</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04411</iyy>
+          <iyz>0</iyz>
+          <izz>0.02467</izz>
+        </inertia>
+      </inertial>
+      <collision name='rear_left_wheel_link_collision'>
+        <pose>0 0 0 1.57079 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.1143</length>
+            <radius>0.1651</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rear_left_wheel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.8 0.8 0.8</scale>
+            <uri>meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0 0 0.5 1</ambient>
+          <diffuse>0 0 0.1 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    <joint name='rear_right_wheel' type='revolute'>
+      <pose relative_to='base_link'>-0.3 -0.325 0.53282 0 -0 0</pose>
+      <parent>base_link</parent>
+      <child>rear_right_wheel_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='rear_right_wheel_link'>
+      <pose relative_to='rear_right_wheel'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 -0 0</pose>
+        <mass>2.637</mass>
+        <inertia>
+          <ixx>0.02467</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.04411</iyy>
+          <iyz>0</iyz>
+          <izz>0.02467</izz>
+        </inertia>
+      </inertial>
+      <collision name='rear_right_wheel_link_collision'>
+        <pose>0 0 0 1.57079 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.1143</length>
+            <radius>0.1651</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='rear_right_wheel_link_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.8 0.8 0.8</scale>
+            <uri>meshes/wheel.stl</uri>
+          </mesh>
+        </geometry>
+        <material> <!-- Wheel material -->
+          <ambient>0 0 0.5 1</ambient>
+          <diffuse>0 0 0.1 1</diffuse>
+          <specular>0 0 0 0</specular>
+          <emissive>0 0 0 1</emissive>
+        </material> <!-- End wheel material -->
+      </visual>
+    </link>
+    <static>0</static>
+    <plugin
+        filename="ignition-gazebo-diff-drive-system"
+        name="ignition::gazebo::systems::DiffDrive">
+        <left_joint>front_left_wheel</left_joint>
+        <right_joint>front_right_wheel</right_joint>
+        <wheel_separation>1.25</wheel_separation>
+        <wheel_radius>0.3</wheel_radius>
+        <topic>cmd_vel</topic>
+      </plugin>
+  </model>
+</sdf>

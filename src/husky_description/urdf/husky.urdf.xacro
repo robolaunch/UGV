@@ -179,8 +179,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
           <horizontal_fov>${85 * M_PI/180.0}</horizontal_fov>
           <image>
             <format>R8G8B8</format>
-            <width>1020</width>
-            <height>1020</height>
+            <width>4000</width>
+            <height>3000</height>
           </image>
           <clip>
             <near>0.01</near>

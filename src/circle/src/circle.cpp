@@ -16,6 +16,7 @@ int main(int argc, char** argv){
 
     while(ros::ok()){
         circle.publish(msg);    
+        ros::Duration(0.5).sleep();
     }
 
 
